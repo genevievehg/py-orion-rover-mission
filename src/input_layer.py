@@ -9,6 +9,5 @@ def parse_position(position_string):
     direction = position_string.split(' ')[2]
     return {"x": int(x_position), "y": int(y_position), "direction": direction}
 
-print(parse_plateau("12 15"))
-
-print(parse_position("7 3 E"))
+def parse_instructions(instruction_string):
+    return list(instruction_string)

@@ -1,4 +1,4 @@
-from src.input_layer import parse_plateau, parse_position
+from src.input_layer import parse_plateau, parse_position, parse_instructions
 
 def test_parse_plateau():
     assert parse_plateau("5 5") == {"max_x": 5, "max_y": 5}
@@ -18,6 +18,15 @@ def test_parse_position_with_east_heading_and_different_coordinates():
 def test_parse_position_with_south_heading_and_different_coordinates():
     assert parse_position("3 7 S") == {"x": 3, "y": 7, "direction": "S"}
 
-
 def test_parse_position_with_west_heading_and_different_coordinates():
     assert parse_position("2 6 W") == {"x": 2, "y": 6, "direction": "W"}
+
+def test_parse_instructions_returns_list():
+    assert type(parse_instructions("LMLMLMLMM")) == list
+
+def test_parse_instructions_returns_list_with_one_instruction_for_one_character_string():
+    assert parse_instructions("L") == ["L"]
+
+def test_parse_instructions_returns_correct_order():
+    result = parse_instructions("LMMLLMLMMMLMLM")
+    assert parse_instructions("LMMLLMLMMMLMLM") == ["L", "M", "M", "L", "L", "M", "L", "M", "M", "M", "L", "M", "L", "M"]
